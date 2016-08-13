@@ -21,7 +21,9 @@ var gulp = require('gulp'),
 // SCSS - конвертирует стили scss => css
 gulp.task('scss', function() {
     return gulp.src('./src/scss/**/*.scss')
-        .pipe(scss().on('error', scss.logError))
+        .pipe(scss({
+          includePaths: require('bourbon').includePaths
+        }).on('error', scss.logError))
         .pipe(autoprefixer({
             browsers: ['last 15 versions'],
             cascade: true
